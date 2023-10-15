@@ -9,7 +9,7 @@
 
 int _printf(const char *format, ...)
 {
-	int count = 0;
+	int count = 0, num;
 	va_list args;
 	char *str;
 
@@ -42,6 +42,17 @@ int _printf(const char *format, ...)
 					count++;
 				}
 			}
+			else if (*format == 'i' || *format == 'd')
+			{
+				num = va_arg(args, int);
+				if (num < 0)
+				{
+					_putchar('-');
+					count++;
+					num  = (num * (-1));
+				}
+				count += _print_number(num);
+			}
 			else if (*format == '%')
 			{
 				_putchar('%');
@@ -63,4 +74,23 @@ int _putchar(char c)
 {
 	return (write(1, &c, 1));
 
+}
+
+/**
+* _print_number - prints numbers
+* @num: number to be printed
+*
+* Return: number of characters printed
+*/
+int _print_number(int num)
+{
+	int count = 0;
+
+	if (num / 10)
+		count += _print_number(num / 10);
+
+	_putchar('0' + num % 10);
+	count++;
+
+	return (count);
 }
