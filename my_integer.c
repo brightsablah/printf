@@ -37,6 +37,7 @@ int print_b_integer(va_list args)
 		num = -num;
 	}
 	count += b_print_number(num);
+
 	return (count);
 }
 
@@ -57,6 +58,6 @@ int print_b_float(va_list args)
 		count++;
 		num = -num;
 	}
-	count += b_print_number(num);
+	count += b_print_number((int)num);
 	return (count);
 }
