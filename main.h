@@ -1,15 +1,13 @@
 #ifndef MAIN_H
 #define MAIN_H
 
-#define BUFFER_SIZE 1024
-
 #include <stdlib.h>
 #include <stdarg.h>
 #include <stdio.h>
 #include <unistd.h>
 #include <stdint.h>
 
-void write_buffer(void);
+void write_buffer(const char *buffer, int size);
 int _printf(const char *format, ...);
 int _putchar(char c);
 int _print_number(int num);
@@ -37,6 +35,7 @@ void print_hex_upper(va_list arg);
 void print_pointer(va_list arg);
 void print_percent(va_list arg);
 void print_binary(va_list arg);
+void write_buffer(const char *buffer, int size);
 /*
 struct fmt
 {
