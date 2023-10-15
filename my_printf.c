@@ -1,5 +1,26 @@
 #include "main.h"
 
+#define BUFFER_SIZE 1024
+
+static char b_output[BUFFER_SIZE];
+static int b_index;
+
+/**
+ * b_flush_buffer - flushes output buffer to write to std output
+ *
+ * Return: 0 for success , -1 for error
+ */
+int b_flush_buffer(void)
+{
+	if (write(1, b_output, b_index) == -1)
+	{
+		return (-1);
+	}
+	b_index = 0; /* Reset the buffer index */
+
+	return (0);
+}
+
 /**
  * b_putchar - custom function to print a character and handle errors
  * @b: character to write to standard output
@@ -8,10 +29,15 @@
  */
 int b_putchar(char b)
 {
-	if (write(1, &b, 1) == -1)
+	if (b_index == BUFFER_SIZE)
 	{
-		return (-1);
+		if (b_flush_buffer() == -1)
+		{
+			return (-1);
+		}
 	}
+	b_output[b_index++] = b;
+
 	return (0);
 }
 
@@ -56,11 +82,11 @@ int _printf(const char *format, ...)
 				case 's':
 					get_my_func = print_b_string;
 					break;
-				case 'd':
+				case 'i':
 					get_my_func = print_b_integer;
 					break;
-				case 'i':
-					get_my_func = print_b_float;
+				case 'd':
+					get_my_func = print_b_integer;
 					break;
 				default:
 					get_my_func = NULL;
@@ -94,6 +120,11 @@ int _printf(const char *format, ...)
 			}
 			logo++;
 		}
+	}
+	if (b_flush_buffer() == -1)
+	{
+		va_end(args);
+		return (-1);
 	}
 	va_end(args);
 	return (logo);
