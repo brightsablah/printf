@@ -13,6 +13,6 @@ int print_b_string(va_list args);
 int print_b_integer(va_list args);
 int print_b_float(va_list args);
 int _printf(const char *format, ...);
-
+int b_flush_buffer(void);
 
 #endif
