@@ -29,6 +29,7 @@ int print_b_integer(va_list args)
 {
 	int num = va_arg(args, int);
 	int count = 0;
+
 	if (num < 0)
 	{
 		b_putchar('-');
@@ -36,7 +37,8 @@ int print_b_integer(va_list args)
 		num = -num;
 	}
 	count += b_print_number(num);
-	return count;
+
+	return (count);
 }
 
 /**
