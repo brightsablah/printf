@@ -14,6 +14,8 @@ void write_buffer();
 int _printf(const char *format, ...);
 int _putchar(char c);
 int _print_number(int num);
+char *rot13(char *str);
+char *_strdup(char *str);
 /**
 * struct fmt - format specifier struct
 * @format: character representing format specifier
@@ -38,6 +40,9 @@ void print_hex_upper(va_list arg);
 void print_pointer(va_list arg);
 void print_percent(va_list arg);
 void print_binary(va_list arg);
+void print_reverse(va_list arg);
+void print_rot13(va_list arg);
+void print_ASCII_string(va_list arg);
 /*
 struct fmt
 {

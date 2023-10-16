@@ -19,7 +19,10 @@ int _printf(const char *format, ...)
         {'x', print_hex},
         {'X', print_hex_upper},
         {'p', print_pointer},
-        {'b', print_binary}
+        {'b', print_binary},
+        {'r', print_reverse},
+        {'R', print_rot13},
+        {'S', print_ASCII_string},
     };
 
     va_start(arg_list, format);
@@ -271,29 +274,7 @@ void print_pointer(va_list arg)
           _putchar(hex_representation[i]);
       }
   }
-  
-/*
-	char hex_digits[16] = "0123456789abcdef";
-	char hex_representation[16];
-	int count = 0;
-  int i;
 
-	unsigned long long address = (unsigned long long)ptr;
-
-	while (address > 0)
-	{
-		hex_representation[count++] = hex_digits[address % 16];
-		address /= 16;
-	}
-
-	_putchar('0');
-	_putchar('x');
-
-	for (i = count - 1; i >= 0; i--)
-	{
-		_putchar(hex_representation[i]);
-	}
-  */
     /*printf("%p", ptr);*/
 }
 
@@ -368,3 +349,135 @@ int _print_number(int num)
 
     return count;
 }
+
+  void print_reverse(va_list arg)
+  {
+    char *str = va_arg(arg, char *);
+      
+    int length = 0, i;
+    if (str == NULL)
+    {
+      return;
+    }
+
+      while (str[length] != '\0')
+      {
+          length++;
+      }
+
+      for (i = length - 1; i >= 0; i--)
+      {
+          _putchar(str[i]);
+      }
+  }
+
+void print_rot13(va_list arg)
+{
+  char *str = va_arg(arg, char *);
+    char *rot13_str;
+    int i;
+
+  if (str == NULL)
+    return;
+
+  rot13_str = _strdup(str);
+    if (rot13_str == NULL)
+      return;
+
+ rot13(rot13_str);
+
+  for (i = 0; rot13_str[i] != '\0'; i++)
+    _putchar(rot13_str[i]);
+  
+}
+
+  /**
+  * _strdup - duplicates string
+  * Description: cpoies string into another initialized memory
+  * @str: string to be copied
+  *
+  * Return: pointer to duplicate string or null if unsuccessful
+  */
+
+  char *_strdup(char *str)
+  {
+    char *dupstr;
+    int len = 0, i;
+
+    if (str == NULL)
+    {
+      return (NULL);
+    }
+
+    while (str[len] != '\0')
+    {
+      len++;
+    }
+
+    dupstr = (char *)(malloc((len + 1) * sizeof(char)));
+
+    if (dupstr == NULL)
+    {
+      return (NULL);
+    }
+
+    for (i = 0; i < len; i++)
+    {
+      dupstr[i] = str[i];
+    }
+
+    /* null teminating duplicate string */
+    dupstr[len] = '\0';
+
+    return (dupstr);
+  }
+  
+/**
+* rot13 - encodes string into rot13
+* Description: converts all specified characters into
+* specified codes
+* @str: pointer to string input
+* Return: Pointer to converted string
+*/
+char *rot13(char *str)
+{
+  int i, j;
+  char a[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  char b[] = "nopqrstuvwxyzabcdefghijklmNOPQRSTUVWXYZABCDEFGHIJKLM";
+
+
+  for (i = 0; str[i] != '\0'; i++)
+  {
+    for (j = 0; a[j] != '\0'; j++)
+    {
+      if (str[i] == a[j])
+      {
+        str[i] = b[j];
+        break;
+      }
+    }
+  }
+return (str);
+
+}
+
+
+  void print_ASCII_string(va_list arg)
+  {
+      char *str = va_arg(arg, char *);
+      if (str == NULL) {
+          return;
+      }
+      while (*str) {
+          if (*str < 32 || *str >= 127) {
+              /* Print non-printable characters as \x followed by the ASCII code value */
+              _putchar('\\');
+              _putchar('x');
+              _putchar((*str / 16 < 10) ? ('0' + (*str / 16)) : ('A' + (*str / 16 - 10)));
+              _putchar((*str % 16 < 10) ? ('0' + (*str % 16)) : ('A' + (*str % 16 - 10)));
+          } else {
+              _putchar(*str);
+          }
+          str++;
+      }
+  }
