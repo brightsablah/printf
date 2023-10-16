@@ -333,14 +333,19 @@ void print_binary(va_list arg)
 }
 
 int _putchar(char c)
+{
+    if (buffer_index < BUFFER_SIZE)
     {
-      if (buffer_index < BUFFER_SIZE) {
-          output_buffer[buffer_index++] = c;
-          return 1;  /* Successfully added the character to the buffer*/
-      } else {
-          return 0;  /* Buffer is full*/
-      }
+        output_buffer[buffer_index++] = c;
     }
+    else
+    {
+        write_buffer(); /* Flush the buffer*/
+        buffer_index = 0; /* Reset the buffer index */
+        output_buffer[buffer_index++] = c;
+    }
+    return 1; /* Indicate success in adding the character to the buffer*/
+}
 
 void write_buffer()
 {
