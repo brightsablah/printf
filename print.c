@@ -1,8 +1,8 @@
 #include "main.h"
 
 
-static char output_buffer[BUFFER_SIZE];
-static int buffer_index = 0;
+char output_buffer[BUFFER_SIZE];
+int buffer_index = 0;
 
 int _printf(const char *format, ...)
 {
