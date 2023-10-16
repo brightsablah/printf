@@ -7,6 +7,7 @@ static int buffer_index = 0;
 int _printf(const char *format, ...)
 {
     unsigned int i = 0, j = 0;
+    int specifier_found;
     va_list arg_list;
     fmt_spec specifiers[] = {
         {'%', print_percent},
@@ -42,7 +43,7 @@ int _printf(const char *format, ...)
               i++;
             
             }
-            int specifier_found = 0;
+            specifier_found = 0;
             for (j = 0; j < sizeof(specifiers) / sizeof(specifiers[0]); j++)
             {
                 if (format[i + 1] == specifiers[j].format)
