@@ -348,7 +348,7 @@ int _putchar(char c)
 
 void write_buffer(void)
 {
-    write(STDOUT_FILENO, output_buffer, buffer_index);  /* Write the contents of the buffer to stdout*/
+    write(1, output_buffer, buffer_index);  /* Write the contents of the buffer to stdout*/
 }
 
 int _print_number(int num)
