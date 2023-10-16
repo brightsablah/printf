@@ -37,6 +37,11 @@ int _printf(const char *format, ...)
     {
         if (format[i] == '%')
         {
+            if (format[i + 1] == ' ' && format[i + 2] == '\0')
+            {
+              i++;
+            
+            }
             int specifier_found = 0;
             for (j = 0; j < sizeof(specifiers) / sizeof(specifiers[0]); j++)
             {
