@@ -1,8 +1,8 @@
 #include "main.h"
 
 
-char output_buffer[BUFFER_SIZE];
-int buffer_index = 0;
+static char output_buffer[BUFFER_SIZE];
+static int buffer_index = 0;
 
 int _printf(const char *format, ...)
 {
@@ -40,9 +40,8 @@ int _printf(const char *format, ...)
         {
             if (format[i + 1] == ' ' && format[i + 2] == '\0')
             {
-              i++;
-            
-            }
+		    i++;
+	    }
             specifier_found = 0;
             for (j = 0; j < sizeof(specifiers) / sizeof(specifiers[0]); j++)
             {
@@ -85,7 +84,7 @@ int _printf(const char *format, ...)
 
 
 void print_char(va_list arg)
-{ 
+{
      char c = va_arg(arg, int);
     _putchar(c);
 }
@@ -333,19 +332,16 @@ void print_binary(va_list arg)
 }
 
 int _putchar(char c)
-{
-    if (buffer_index < BUFFER_SIZE)
     {
-        output_buffer[buffer_index++] = c;
+      if (buffer_index < BUFFER_SIZE) {
+          output_buffer[buffer_index++] = c;
+          return 1;  /* Successfully added the character to the buffer*/
+      } else {
+
+	      write_buffer();  /* Buffer is full write buffer content*/
+	      return _putchar(c); /* add charactcter to buffer recursively */
+      }
     }
-    else
-    {
-        write_buffer(); /* Flush the buffer*/
-        buffer_index = 0; /* Reset the buffer index */
-        output_buffer[buffer_index++] = c;
-    }
-    return 1; /* Indicate success in adding the character to the buffer*/
-}
 
 void write_buffer()
 {
@@ -359,22 +355,32 @@ int _print_number(int num)
 
     if (num == INT_MIN) {
         /* Handle the special case of the largest negative value */
-        while (int_min[count] != '\0')
-        {
-            _putchar(int_min[count]);
-            count++;
+        while (int_min[count] != '\0') {
+            if (_putchar(int_min[count])) {
+                count++;
+            } else {
+                write_buffer();  /* Buffer is full, so write its contents */
+            }
         }
     } else if (num < 0) {
-        _putchar('-');
-        count++;
+        if (_putchar('-')) {
+            count++;
+        } else {
+            write_buffer();  /* Buffer is full, so write its contents */
+        }
         num = -num;
     }
-    if (num != INT_MIN){
-      if (num / 10)
-        count += _print_number(num / 10);
 
-      _putchar('0' + num % 10);
-      count++;
+    if (num != INT_MIN) {
+        if (num / 10) {
+            count += _print_number(num / 10);
+        }
+
+        if (_putchar('0' + num % 10)) {
+            count++;
+        } else {
+            write_buffer();  /* Buffer is full, so write its contents */
+        }
     }
 
     return count;
