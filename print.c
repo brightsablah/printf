@@ -32,7 +32,7 @@ int _printf(const char *format, ...)
 
   /* resetting buffer index to zero at the beginning of each _printf call */
   buffer_index = 0;
-  
+
     while (format != NULL && format[i] != '\0')
     {
         if (format[i] == '%')
@@ -87,14 +87,26 @@ void print_char(va_list arg)
 void print_string(va_list arg)
 {
     char *str = va_arg(arg, char *);
-  
+    char*null_str = "(null)";
+
     if (str == NULL)
-      return;
-    while (*str)
-      {
-        _putchar(*str);
-        str++;
-      }
+    {
+
+      while (*null_str)
+        {
+          _putchar(*null_str);
+          null_str++;
+        }
+    }
+    else
+    {
+        while (*str)
+          {
+            _putchar(*str);
+            str++;
+          }
+    }
+
       /*if (str == NULL)
         str = "(nil)";
       printf("%s", str); */
@@ -117,7 +129,7 @@ void print_unsigned(va_list arg)
   int i;
   /* Initialize an array to store decimal digits */
   char decimal_representation[16]; /* Maximum 16 characters for an unsigned int */
-  
+
    /* Handle the special case of 0 */
     if (num == 0) {
         _putchar('0');
@@ -144,7 +156,7 @@ void print_unsigned(va_list arg)
     for (i = 0; i < num_digits; i++) {
         _putchar(decimal_representation[i]);
     }
-  
+
   /*printf("%u", num);*/
 }
 
@@ -171,7 +183,7 @@ void print_octal(va_list arg)
   for (i = count - 1; i >= 0; i--) {
       _putchar('0' + octal_digits[i]);
   }
-  
+
     /*printf("%o", num);*/
 }
 
@@ -199,7 +211,7 @@ void print_hex(va_list arg)
     for (i = count - 1; i >= 0; i--) {
         _putchar(hex_representation[i]);
     }
-  
+
   /*printf("%x", num);*/
 }
 
@@ -258,7 +270,7 @@ void print_pointer(va_list arg)
           temp /= 16;
           num_digits++;
       }
-    
+
     /* Initialize an array to store hexadecimal digits */
     hex_digits = "0123456789abcdef"; /* Uppercase hexadecimal digits */
    /* char hex_representation[16];  Maximum 16 characters for 64-bit pointer */
@@ -297,7 +309,7 @@ void print_binary(va_list arg)
       _putchar('0');
       return;
     }
-  
+
     for (i = sizeof(unsigned int) * 8 - 1; i >= 0; i--)
     {
         int bit = (num >> i) & 1;
@@ -329,31 +341,36 @@ void write_buffer()
 int _print_number(int num)
 {
     int count = 0;
+    char *int_min = "-2147483648";
 
     if (num == INT_MIN) {
         /* Handle the special case of the largest negative value */
-        _putchar('-');
-        count++;
-        num = INT_MAX;
+        while (int_min[count] != '\0')
+        {
+            _putchar(int_min[count]);
+            count++;
+        }
     } else if (num < 0) {
         _putchar('-');
         count++;
         num = -num;
     }
-
-    if (num / 10)
+    if (num != INT_MIN){
+      if (num / 10)
         count += _print_number(num / 10);
 
-    _putchar('0' + num % 10);
-    count++;
+      _putchar('0' + num % 10);
+      count++;
+    }
 
     return count;
 }
 
+
   void print_reverse(va_list arg)
   {
     char *str = va_arg(arg, char *);
-      
+
     int length = 0, i;
     if (str == NULL)
     {
@@ -388,7 +405,7 @@ void print_rot13(va_list arg)
 
   for (i = 0; rot13_str[i] != '\0'; i++)
     _putchar(rot13_str[i]);
-  
+
 }
 
   /**
@@ -431,7 +448,7 @@ void print_rot13(va_list arg)
 
     return (dupstr);
   }
-  
+
 /**
 * rot13 - encodes string into rot13
 * Description: converts all specified characters into
