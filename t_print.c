@@ -1,8 +1,8 @@
 #include "main.h"
 
 
-static char output_buffer[BUFFER_SIZE];
-static int buffer_index = 0;
+char output_buffer[BUFFER_SIZE];
+int buffer_index = 0;
 
 int _printf(const char *format, ...)
 {
@@ -31,8 +31,7 @@ int _printf(const char *format, ...)
     if(format == NULL)
       return (-1);
 
-  /* resetting buffer index to zero at the beginning of each _printf call */
-  buffer_index = 0;
+    buffer_index = 0;
 
     while (format != NULL && format[i] != '\0')
     {
@@ -332,18 +331,22 @@ void print_binary(va_list arg)
 }
 
 int _putchar(char c)
-    {
-      if (buffer_index < BUFFER_SIZE) {
-          output_buffer[buffer_index++] = c;
-          return 1;  /* Successfully added the character to the buffer*/
-      } else {
+{
+	if (buffer_index < BUFFER_SIZE)
+	{
+		output_buffer[buffer_index++] = c;
 
-	      write_buffer();  /* Buffer is full write buffer content*/
-	      return _putchar(c); /* add charactcter to buffer recursively */
-      }
-    }
+		return (1);  /* Successfully added the character to the buffer*/
+	}
+	else
+	{
+		write_buffer();  /* Buffer is full write buffer content*/
 
-void write_buffer()
+		return (_putchar(c)); /* add charactcter to buffer recursively */
+	}
+}
+
+void write_buffer(void)
 {
     write(STDOUT_FILENO, output_buffer, buffer_index);  /* Write the contents of the buffer to stdout*/
 }
