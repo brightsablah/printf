@@ -251,12 +251,15 @@ void print_pointer(va_list arg)
   char hex_representation[16];
   uintptr_t temp;
   uintptr_t ptr_value;
+  char *null_ptr = "(nil)";
 
   if (ptr == NULL) {
       /* Handle the special case of a NULL pointer */
-      _putchar('0');
-      _putchar('x');
-      _putchar('0'); /* Print a single zero for NULL pointer */
+      while(*null_ptr != '\0')
+      {
+        _putchar(*null_ptr++);
+      }
+/* Print a (nil) for NULL pointer */
   } else {
       /* Print the "0x" prefix for a non-NULL pointer */
       _putchar('0');
