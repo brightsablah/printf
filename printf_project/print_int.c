@@ -10,6 +10,5 @@ void print_int(va_list arg, Buffer *buffer)
 {
 	int num = va_arg(arg, int);
 
-	void(*buffer);
-	_print_number(num);
+	_print_number(num, buffer);
 }
