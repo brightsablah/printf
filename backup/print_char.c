@@ -1,4 +1,5 @@
 #include "main.h"
+#include "main.h"
 /**
  * print_char - Prints a character
  * @arg: A va_list containing the character to print
