@@ -12,7 +12,7 @@
 #include <limits.h>
 
 /**
- * struct Buffer - A structure for managing the output buffer
+ * struct buff - A structure for managing the output buffer
  * @output_buffer: The character array to store the buffer data
  * @buffer_index: The current size of the buffer
  *
@@ -23,7 +23,7 @@ struct buff
 {
 	char output_buffer[BUFFER_SIZE];
 	size_t buffer_index;
-}; 
+};
 typedef struct buff Buffer;
 
 void buffer_init(Buffer *buffer);
@@ -41,7 +41,7 @@ void buffer_flush(Buffer *buffer);
 struct fmt
 {
 	char format;
-	void (*print_function)(va_list);
+	void (*print_function)(va_list, Buffer);
 };
 typedef struct fmt fmt_spec;
 
