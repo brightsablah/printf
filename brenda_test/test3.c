@@ -36,103 +36,91 @@ int _printf(const char *format, ...)
 
     return buffer_index;
 }
-
 void handle_flags(va_list arg_list, const char *format)
 {
     int width = 0;
-    int precision = 0;
-    int flags ;
+    int precision = -1;
+    int flags = 0;
 
-    
-    while (1) {
-        if (*format == '+') {
+    while (1)
+    {
+        if (*format == '+')
+        {
             flags |= 1;
             format++;
-        } else if (*format == ' ') {
+        }
+        else if (*format == ' ')
+        {
             flags |= 2;
             format++;
-        } else if (*format == '#') {
+        }
+        else if (*format == '#')
+        {
             flags |= 4;
             format++;
-        } else if (*format == '0') {
+        }
+        else if (*format == '0')
+        {
             flags |= 8;
             format++;
-        } else if (*format == '-') {
+        }
+        else if (*format == '-')
+        {
             flags |= 16;
             format++;
-        } else {
+        }
+        else
+        {
             break;
         }
     }
 
-    
-    if (*format >= '0' && *format <= '9') 
+    if (*format >= '0' && *format <= '9')
     {
-        width = strtol(format, (char**)&format, 10);
-      _putchar(width);
+        
     }
 
-    
-    if (*format == '.') {
+    if (*format == '.')
+    {
         format++;
-        if (*format >= '0' && *format <= '9') {
+        if (*format >= '0' && *format <= '9')
+        {
             precision = strtol(format, (char**)&format, 10);
-        } else if (*format == '*') {
+        }
+        else if (*format == '*')
+        {
             precision = va_arg(arg_list, int);
             format++;
         }
-      _putchar(precision);
     }
 
-    
-    switch (*format) {
-        case '%':
-            _putchar('%');
-            break;
+    switch (*format)
+    {
         case 'c':
-            print_char(arg_list);
+        {
+            char c = va_arg(arg_list, int);
             break;
+        }
         case 's':
-            print_string(arg_list);
+        {
+            char *str = va_arg(arg_list, char *);
             break;
+        }
         case 'd':
         case 'i':
-            print_int(arg_list);
-            break;
+        {
+            int num = va_arg(arg_list, int);
+	    break;
+        }
         case 'u':
-            print_unsigned(arg_list);
-            break;
-        case 'o':
-            print_octal(arg_list);
-            break;
-        case 'x':
-            print_hex(arg_list);
-            break;
-        case 'X':
-            print_hex_upper(arg_list);
-            break;
-        case 'p':
-            print_pointer(arg_list);
-            break;
-        case 'b':
-            print_binary(arg_list);
-            break;
-        case 'r':
-            print_reverse(arg_list);
-            break;
-        case 'R':
-            print_rot13(arg_list);
-            break;
-        case 'S':
-            print_ASCII_string(arg_list);
-            break;
+        {
+            unsigned int num = va_arg(arg_list, unsigned int);
+	    break;
+        }
         default:
-            _putchar('%');
-            _putchar(*format);
             break;
     }
 }
-
 void print_char(va_list arg)
 {
     char c = va_arg(arg, int);
