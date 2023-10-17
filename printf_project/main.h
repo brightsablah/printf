@@ -12,6 +12,15 @@
 #include <limits.h>
 
 
+typedef struct {
+	char data[BUFFER_SIZE];
+	size_t size;
+} Buffer;
+
+void buffer_init(Buffer *buffer);
+void buffer_append_char(Buffer *buffer, char c);
+void buffer_flush(Buffer *buffer);
+
 /**
  * struct fmt - Format specifier struct
  * @format: The character representing the format specifier
