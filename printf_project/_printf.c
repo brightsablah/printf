@@ -1,18 +1,19 @@
 #include "main.h"
-char output_buffer[BUFFER_SIZE];
-int buffer_index = 0;
+
+static char output_buffer[BUFFER_SIZE];
+static int buffer_index = 0;
 
 /**
- * _printf - Custom printf function
- * @format: The format string
- * @...: Variable number of arguments
- *
- * Description:
- * This function mimics the behavior of the standard printf function,
- * supporting various format specifiers, and writing the output
- * to the standard output
- * Return: The number of characters written to the standard output.
- */
+* _printf - Custom printf function
+* @format: The format string
+* @...: Variable number of arguments
+*
+* Description:
+* This function mimics the behavior of the standard printf function,
+* supporting various format specifiers, and writing the output
+* to the standard output
+* Return: The number of characters written to the standard output.
+*/
 int _printf(const char *format, ...)
 {
 	unsigned int i = 0, j = 0;
@@ -22,7 +23,7 @@ int _printf(const char *format, ...)
 		{'%', print_percent},
 		{'c', print_char},
 		{'s', print_string},
-		{'d', print_int},
+		{'i', print_int},
 		{'d', print_int},
 		{'u', print_unsigned},
 		{'o', print_octal},
@@ -33,13 +34,11 @@ int _printf(const char *format, ...)
 		{'r', print_reverse},
 		{'R', print_rot13},
 		{'S', print_ASCII_string},
-		{'%', print_percent},
-		{'c', print_char},
 	};
 
 	va_start(arg_list, format);
-		if (format == NULL)
-			return (-1);
+	if (format == NULL)
+	return (-1);
 
 /* Resetting buffer index to zero at start of each _printf call */
 	buffer_index = 0;
@@ -55,20 +54,28 @@ int _printf(const char *format, ...)
 			for (j = 0; j < sizeof(specifiers) / sizeof(specifiers[0]); j++)
 			{
 				if (format[i + 1] == specifiers[j].format)
-					specifiers[j].print_function(arg_list); /*call the print function*/
-				else
 				{
-					_putchar('%');
-					_putchar(format[i + 1]); /* print unsupported specifier */
+					if (specifiers[j].print_function != NULL)
+					{
+						specifiers[j].print_function(arg_list); /*call the print function*/
+					}
+					else
+					{
+						_putchar('%');
+						_putchar(format[i + 1]); /* print unsupported specifier */
+					}
+					specifier_found = 1; /* character after % handled */
+					i++; /* skip specifier character */
+					break;
 				}
-				specifier_found = 1; /* character after % handled */
-				i++; /* skip specifier character */
-				break;
 			}
+			if (!specifier_found)
+				_putchar('%');
 		}
-		if (!specifier_found)
-			_putchar('%');
-
+		else
+		{
+		_putchar(format[i]);
+		}
 		i++;
 	}
 	va_end(arg_list);
@@ -76,42 +83,3 @@ int _printf(const char *format, ...)
 
 	return (buffer_index);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
