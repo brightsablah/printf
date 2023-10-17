@@ -1,3 +1,4 @@
+#include "main.h"
 /**
 * print_binary - Prints an integer in binary format
 * @arg: A va_list containing the integer to print in binary
