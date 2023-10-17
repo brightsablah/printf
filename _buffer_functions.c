@@ -58,6 +58,7 @@ void buffer_flush(Buffer *buffer)
 	if (buffer != NULL && buffer->buffer_index > 0)
 	{
 		write(STDOUT_FILENO, buffer->output_buffer, buffer->buffer_index);
+		buffer->buffer_index = 0;
 	}
 }
 
