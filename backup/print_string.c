@@ -1,3 +1,4 @@
+#include "main.h"
 /**
  * print_string - Prints a string
  * @arg: A va_list containing the string to print

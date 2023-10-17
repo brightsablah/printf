@@ -1,3 +1,4 @@
+#include "main.h"
 /**
 * print_ASCII_string - Prints a string with non-printable
 * ASCII characters as '\xXX'
