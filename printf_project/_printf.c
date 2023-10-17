@@ -15,7 +15,7 @@ int _printf(const char *format, ...)
 {
 	unsigned int i = 0, j = 0;
 	int specifier_found;
-	va_list arg, Buffer *buffer_list;
+	va_list arg_list;
 	fmt_spec specifiers[] = {
 		{'%', print_percent},
 		{'c', print_char},
@@ -33,6 +33,7 @@ int _printf(const char *format, ...)
 		{'S', print_ASCII_string},
 	};
 	Buffer buffer; /* declaring buffer */
+
 	va_start(arg_list, format);
 	if (format == NULL)
 	return (-1);
@@ -58,7 +59,7 @@ int _printf(const char *format, ...)
 					}
 					else
 					{
-						buffer_append_char(&buffer,'%');
+						buffer_append_char(&buffer, '%');
 						buffer_append_char(&buffer, format[i + 1]); /* print unsupported specifier */
 					}
 					specifier_found = 1; /* character after % handled */

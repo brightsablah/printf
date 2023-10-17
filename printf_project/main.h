@@ -27,7 +27,7 @@ struct buff
 typedef struct buff Buffer;
 
 void buffer_init(Buffer *buffer);
-void buffer_append_char(Buffer *buffer, char c);
+void buffer_append_char(Buffer *, char);
 void buffer_flush(Buffer *buffer);
 
 /**

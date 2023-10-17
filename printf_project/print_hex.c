@@ -17,7 +17,7 @@ void print_hex(va_list arg, Buffer *buffer)
 /* special case for num = 0 */
 	if (num == 0)
 	{
-		buffer_append_char(&buffer, '0');
+		buffer_append_char(buffer, '0');
 		return;
 	}
 /* doing number base division and adding remainders to hex array */
@@ -29,6 +29,6 @@ void print_hex(va_list arg, Buffer *buffer)
 /* printing out the elements of the hex array */
 	for (i = count - 1; i >= 0; i--)
 	{
-		buffer_append_char(&buffer, hex_representation[i]);
+		buffer_append_char(buffer, hex_representation[i]);
 	}
 }

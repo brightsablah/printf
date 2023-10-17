@@ -23,6 +23,6 @@ void print_reverse(va_list arg, Buffer *buffer)
 /* print characters in reverse */
 	for (i = length - 1; i >= 0; i--)
 	{
-		buffer_append_char(&buffer, str[i]);
+		buffer_append_char(buffer, str[i]);
 	}
 }

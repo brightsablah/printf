@@ -27,6 +27,6 @@ void print_rot13(va_list arg, Buffer *buffer)
 /* printing ROT13 string */
 	for (i = 0; rot13_str[i] != '\0'; i++)
 	{
-		buffer_append_char(&buffer, rot13_str[i]);
+		buffer_append_char(buffer, rot13_str[i]);
 	}
 }

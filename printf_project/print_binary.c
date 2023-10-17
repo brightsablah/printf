@@ -15,7 +15,7 @@ void print_binary(va_list arg, Buffer *buffer)
 /* special case for num = 0 */
 	if (num == 0)
 	{
-		buffer_append_char(&buffer, '0');
+		buffer_append_char(buffer, '0');
 		return;
 	}
 /* looping through bits of num value */
@@ -25,7 +25,7 @@ void print_binary(va_list arg, Buffer *buffer)
 		bit = (num >> i) & 1;
 		if (bit || !leading_zeros)
 		{
-			buffer_append_char(&buffer, '0' + bit);
+			buffer_append_char(buffer, '0' + bit);
 			leading_zeros = 0;
 		}
 	}

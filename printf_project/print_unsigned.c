@@ -17,7 +17,7 @@ void print_unsigned(va_list arg, Buffer *buffer)
 /* special case for unsigned number = 0 */
 	if (num == 0)
 	{
-		buffer_append_char(&buffer, '0');
+		buffer_append_char(buffer, '0');
 		return;
 	}
 
@@ -37,6 +37,6 @@ void print_unsigned(va_list arg, Buffer *buffer)
 /* printing out characters in the array */
 	for (i = 0; i < num_digits; i++)
 	{
-		buffer_append_char(&buffer, decimal_representation[i]);
+		buffer_append_char(buffer, decimal_representation[i]);
 	}
 }
