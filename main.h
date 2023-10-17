@@ -3,6 +3,7 @@
 
 #define BUFFER_SIZE 1024
 
+/* Including Headers */
 #include <stdlib.h>
 #include <stdarg.h>
 #include <stdio.h>
@@ -10,72 +11,62 @@
 #include <stdint.h>
 #include <limits.h>
 
-#define PLUS_FLAG_BIT 0x01
-#define NEG_FLAG_BIT  0x02
-#define SPACE_FLAG_BIT 0x10
-#define ZERO_FLAG_BIT 0x04
-#define SHARP_FLAG_BIT 0x08
+/**
+ * struct buff - A structure for managing the output buffer
+ * @output_buffer: The character array to store the buffer data
+ * @buffer_index: The current size of the buffer
+ *
+ * Description:
+ * This structure is used to manage the output buffer for _printf.
+ */
+struct buff
+{
+	char output_buffer[BUFFER_SIZE];
+	size_t buffer_index;
+};
+typedef struct buff Buffer;
 
-void write_buffer();
+void buffer_init(Buffer *buffer);
+void buffer_append_char(Buffer *, char);
+void buffer_flush(Buffer *buffer);
+
+/**
+ * struct fmt - Format specifier struct
+ * @format: The character representing the format specifier
+ * @print_function: Function pointer to the print function to be invoked
+ *
+ * Description:
+ * This structure defines a format specifier and its associated print function.
+ */
+struct fmt
+{
+	char format;
+	void (*print_function)(va_list, Buffer *);
+};
+typedef struct fmt fmt_spec;
+
+
+/* Print Function prototypes */
 int _printf(const char *format, ...);
+void print_char(va_list arg, Buffer *buffer);
+void print_string(va_list arg, Buffer *buffer);
+void print_int(va_list arg, Buffer *buffer);
+void print_unsigned(va_list arg, Buffer *buffer);
+void print_octal(va_list arg, Buffer *buffer);
+void print_hex(va_list arg, Buffer *buffer);
+void print_hex_upper(va_list arg, Buffer *buffer);
+void print_pointer(va_list arg, Buffer *buffer);
+void print_percent(va_list arg, Buffer *buffer);
+void print_binary(va_list arg, Buffer *buffer);
+void print_reverse(va_list arg, Buffer *buffer);
+void print_rot13(va_list arg, Buffer *buffer);
+void print_ASCII_string(va_list arg, Buffer *buffer);
+
+/* Support Functions */
+void write_buffer(void);
 int _putchar(char c);
-int _print_number(int num);
+int _print_number(int num, Buffer *buffer);
 char *rot13(char *str);
 char *_strdup(char *str);
-/**
-* struct fmt - format specifier struct
-* @format: character representing format specifier
-* @print_function: function pointer to the print function to be invoked
-*/
-struct fmt
-{
-  char format;
-void (*print_function)(va_list);
-};
-typedef struct fmt fmt_spec;
 
-typedef struct flag_s {
-    unsigned char flag;
-    unsigned char sign;
-} flag_t;
-
-/* Function prototypes */
-flag_t flags(const char *format, unsigned int *index);
-void clear_flag_bit(flag_t *flags, unsigned char bit);
-void set_flag_bit(flag_t *flags, unsigned char bit);
-int _printf(const char *format, ...);
-void print_char(va_list arg);
-void print_string(va_list arg);
-void print_int(va_list arg);
-void print_unsigned(va_list arg);
-void print_octal(va_list arg);
-void print_hex(va_list arg);
-void print_hex_upper(va_list arg);
-void print_pointer(va_list arg);
-void print_percent(va_list arg);
-void print_binary(va_list arg);
-void print_reverse(va_list arg);
-void print_rot13(va_list arg);
-void print_ASCII_string(va_list arg);
-/*
-struct fmt
-{
-  char format;
-  int (*print_function)(char *, va_list);
-};
-typedef struct fmt fmt_spec;
-
-int print_char(char *, va_list);
-int print_string(char *, va_list);
-int print_int(char *, va_list);
-int print_float(char *, va_list);
-int print_percent(char *, va_list);
-int print_unsigned(char *, va_list);
-int print_hex(char *, va_list);
-int print_hex_upper(char *, va_list);
-int print_percent(char *, va_list);
-int print_octal(char *, va_list);
-int print_pointer(char *, va_list);
-int print_binary(char *, va_list);
-*/
 #endif
