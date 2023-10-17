@@ -1,8 +1,5 @@
 #include "main.h"
 
-static char output_buffer[BUFFER_SIZE];
-static int buffer_index = 0;
-
 /**
 * _printf - Custom printf function
 * @format: The format string
@@ -35,13 +32,13 @@ int _printf(const char *format, ...)
 		{'R', print_rot13},
 		{'S', print_ASCII_string},
 	};
-
+	Buffer buffer; /* declaring buffer */
 	va_start(arg_list, format);
 	if (format == NULL)
 	return (-1);
 
+	buffer_init(&buffer); /* buffer initialization */
 /* Resetting buffer index to zero at start of each _printf call */
-	buffer_index = 0;
 
 	while (format != NULL && format[i] != '\0')
 	{
@@ -61,8 +58,8 @@ int _printf(const char *format, ...)
 					}
 					else
 					{
-						_putchar('%');
-						_putchar(format[i + 1]); /* print unsupported specifier */
+						buffer_append_char(&buffer,'%');
+						buffer_append_char(&buffer, format[i + 1]); /* print unsupported specifier */
 					}
 					specifier_found = 1; /* character after % handled */
 					i++; /* skip specifier character */
@@ -70,16 +67,16 @@ int _printf(const char *format, ...)
 				}
 			}
 			if (!specifier_found)
-				_putchar('%');
+				buffer_append_char(&buffer, '%');
 		}
 		else
 		{
-		_putchar(format[i]);
+		buffer_append_char(&buffer, format[i]);
 		}
 		i++;
 	}
 	va_end(arg_list);
-	write_buffer(); /* flush buffer */
+	buffer_flush(&buffer); /* flush buffer */
 
-	return (buffer_index);
+	return (buffer.buffer_index);
 }
