@@ -1,5 +1,4 @@
 #include "main.h"
-#include "main.h"
 /**
 * _putchar- Writes a character to the output buffer
 * @c: The character to write
