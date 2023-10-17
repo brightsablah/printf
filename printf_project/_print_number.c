@@ -10,7 +10,7 @@
 * uses recursion to print the digits.
 * Return: The function returns the number of characters printed.
 */
-int _print_number(int num)
+int _print_number(int num, Buffer *buffer)
 {
 	int count = 0;
 	char *int_min = "-2147483648";
@@ -34,7 +34,7 @@ int _print_number(int num)
 	if (num != INT_MIN)
 	{
 		if (num / 10)
-		count += _print_number(num / 10);
+		count += _print_number(num / 10, buffer);
 
 		buffer_append_char(buffer, '0' + num % 10);
 		count++;
