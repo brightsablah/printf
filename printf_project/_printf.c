@@ -55,7 +55,7 @@ int _printf(const char *format, ...)
 				{
 					if (specifiers[j].print_function != NULL)
 					{
-						specifiers[j].print_function(arg_list); /*call the print function*/
+						specifiers[j].print_function(arg_list, &buffer); /*call the print function*/
 					}
 					else
 					{
