@@ -1,4 +1,5 @@
 #include "main.h"
+#include "main.h"
 /**
 * print_hex_upper - Prints an integer in hexadecimal (uppercase)
 * @arg: A va_list containing the integer to print
