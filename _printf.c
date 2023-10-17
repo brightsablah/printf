@@ -79,5 +79,5 @@ int _printf(const char *format, ...)
 	va_end(arg_list);
 	buffer_flush(&buffer); /* flush buffer */
 
-	return (buffer.buffer_index);
+	return (buffer.char_count);
 }
