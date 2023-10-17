@@ -1,5 +1,4 @@
 #include "main.h"
-#include "main.h"
 /**
 * write_buffer - Writes the contents of the output buffer to stdout
 *
