@@ -6,7 +6,7 @@
 * Description:
 * This function prints an integer to the standard output.
 */
-void print_int(va_list arg)
+void print_int(va_list arg, Buffer *buffer)
 {
 	int num = va_arg(arg, int);
 

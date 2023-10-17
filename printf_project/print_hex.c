@@ -7,7 +7,7 @@
 * This function prints an integer in hexadecimal (lowercase)
 * format to the standard output.
 */
-void print_hex(va_list arg)
+void print_hex(va_list arg, Buffer *buffer)
 {
 	unsigned int num = va_arg(arg, unsigned int);
 	char hex_digits[16] = "0123456789abcdef"; /* Hexadecimal digits */

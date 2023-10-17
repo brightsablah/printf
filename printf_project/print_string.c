@@ -7,7 +7,7 @@
  * This function prints a string to the standard output.
  * If the string is NULL, it prints "(null)" instead.
  */
-void print_string(va_list arg)
+void print_string(va_list arg, Buffer *buffer)
 {
 	char *str = va_arg(arg, char *);
 	char *null_str = "(null)";

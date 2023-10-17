@@ -7,7 +7,7 @@
 * This function prints a pointer address in hexadecimal format
 * to the standard output.
 */
-void print_pointer(va_list arg)
+void print_pointer(va_list arg, Buffer *buffer)
 {
 	void *ptr = va_arg(arg, void *);
 	int i, num_digits;

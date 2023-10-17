@@ -9,7 +9,7 @@
 * as '\x' followed by the ASCII code value. It handles special cases where
 * characters are not printable.
 */
-void print_ASCII_string(va_list arg)
+void print_ASCII_string(va_list arg, Buffer *buffer)
 {
 	char *str = va_arg(arg, char *);
 

@@ -6,7 +6,7 @@
 * Description:
 * This function prints an octal number to the standard output.
 */
-void print_octal(va_list arg)
+void print_octal(va_list arg, Buffer *buffer)
 {
 	unsigned int num = va_arg(arg, unsigned int);
 	int octal_digits[12]; /* Assuming a max of 12 octal digits enough for 32bit*/

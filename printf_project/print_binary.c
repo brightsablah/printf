@@ -6,7 +6,7 @@
 * Description:
 * This function prints an integer in binary format to the standard output.
 */
-void print_binary(va_list arg)
+void print_binary(va_list arg, Buffer *buffer)
 {
 	unsigned int num = va_arg(arg, unsigned int);
 	int leading_zeros = 1; /* Flag to skip leading zeros */

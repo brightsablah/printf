@@ -6,7 +6,7 @@
 * Description:
 * This function prints an unsigned integer to the standard output.
 */
-void print_unsigned(va_list arg)
+void print_unsigned(va_list arg, Buffer *buffer)
 {
 	unsigned int num = va_arg(arg, unsigned int);
 	unsigned int temp;

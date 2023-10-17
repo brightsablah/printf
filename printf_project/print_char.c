@@ -6,7 +6,7 @@
  * Description:
  * This function prints a character to the standard output.
  */
-void print_char(va_list arg)
+void print_char(va_list arg, Buffer *buffer)
 {
 	char c = va_arg(arg, int);
 

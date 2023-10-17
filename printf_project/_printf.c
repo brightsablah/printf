@@ -15,7 +15,7 @@ int _printf(const char *format, ...)
 {
 	unsigned int i = 0, j = 0;
 	int specifier_found;
-	va_list arg_list;
+	va_list arg, Buffer *buffer_list;
 	fmt_spec specifiers[] = {
 		{'%', print_percent},
 		{'c', print_char},

@@ -48,19 +48,19 @@ typedef struct fmt fmt_spec;
 
 /* Print Function prototypes */
 int _printf(const char *format, ...);
-void print_char(va_list arg);
-void print_string(va_list arg);
-void print_int(va_list arg);
-void print_unsigned(va_list arg);
-void print_octal(va_list arg);
-void print_hex(va_list arg);
-void print_hex_upper(va_list arg);
-void print_pointer(va_list arg);
-void print_percent(va_list arg);
-void print_binary(va_list arg);
-void print_reverse(va_list arg);
-void print_rot13(va_list arg);
-void print_ASCII_string(va_list arg);
+void print_char(va_list arg, Buffer *buffer);
+void print_string(va_list arg, Buffer *buffer);
+void print_int(va_list arg, Buffer *buffer);
+void print_unsigned(va_list arg, Buffer *buffer);
+void print_octal(va_list arg, Buffer *buffer);
+void print_hex(va_list arg, Buffer *buffer);
+void print_hex_upper(va_list arg, Buffer *buffer);
+void print_pointer(va_list arg, Buffer *buffer);
+void print_percent(va_list arg, Buffer *buffer);
+void print_binary(va_list arg, Buffer *buffer);
+void print_reverse(va_list arg, Buffer *buffer);
+void print_rot13(va_list arg, Buffer *buffer);
+void print_ASCII_string(va_list arg, Buffer *buffer);
 
 /* Support Functions */
 void write_buffer(void);

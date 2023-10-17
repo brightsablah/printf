@@ -6,7 +6,7 @@
 * Description:
 * This function prints a percent sign ("%") to the standard output.
 */
-void print_percent(va_list arg)
+void print_percent(va_list arg, Buffer *buffer)
 {
 	(void)arg; /* Unused parameter */
 

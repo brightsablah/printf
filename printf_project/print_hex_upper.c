@@ -7,7 +7,7 @@
 * This function prints an integer in hexadecimal (uppercase)
 * format to the standard output.
 */
-void print_hex_upper(va_list arg)
+void print_hex_upper(va_list arg, Buffer *buffer)
 {
 	unsigned int num = va_arg(arg, unsigned int);
 	char hex_digits[16] = "0123456789ABCDEF"; /*Upper Hexadecimal digits */
