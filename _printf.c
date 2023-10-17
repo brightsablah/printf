@@ -55,12 +55,12 @@ int _printf(const char *format, ...)
 				{
 					if (specifiers[j].print_function != NULL)
 					{
-						specifiers[j].print_function(arg_list, &buffer); /*call the print function*/
+						specifiers[j].print_function(arg_list, &buffer); /*call print function*/
 					}
 					else
 					{
 						buffer_append_char(&buffer, '%');
-						buffer_append_char(&buffer, format[i + 1]); /* print unsupported specifier */
+						buffer_append_char(&buffer, format[i + 1]); /* print specifier */
 					}
 					specifier_found = 1; /* character after % handled */
 					i++; /* skip specifier character */

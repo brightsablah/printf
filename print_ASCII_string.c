@@ -3,7 +3,7 @@
 * print_ASCII_string - Prints a string with non-printable
 * ASCII characters as '\xXX'
 * @arg: A va_list containing the string to print
-*
+* @buffer: buffer to store and manage output
 * Description:
 * This function prints a string, representing non-printable ASCII characters
 * as '\x' followed by the ASCII code value. It handles special cases where
