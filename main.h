@@ -23,6 +23,7 @@ struct buff
 {
 	char output_buffer[BUFFER_SIZE];
 	size_t buffer_index;
+	int char_count;
 };
 typedef struct buff Buffer;
 
