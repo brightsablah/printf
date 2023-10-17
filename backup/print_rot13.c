@@ -1,5 +1,4 @@
 #include "main.h"
-#include "main.h"
 /**
 * print_rot13 - Prints a string encoded in ROT13
 * @arg: A va_list containing the string to print
