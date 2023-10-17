@@ -8,7 +8,7 @@
 * it flushes the buffer to the standard output and resets the buffer index.
 * Return: This function returns 1 on success or -1 on failure.
 */
-int _putchar(char c)
+int buffer_append_char(&buffer, char c)
 {
 	if (buffer_index < BUFFER_SIZE)
 	{

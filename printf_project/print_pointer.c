@@ -21,13 +21,13 @@ void print_pointer(va_list arg)
 	{
 		while (*null_ptr != '\0')
 		{
-		_putchar(*null_ptr++);
+		buffer_append_char(&buffer, *null_ptr++);
 		}
 	}
 	else
 	{
-		_putchar('0'); /* starting hex printing with '0x' */
-		_putchar('x');
+		buffer_append_char(&buffer, '0'); /* starting hex printing with '0x' */
+		buffer_append_char(&buffer, 'x');
 		ptr_value = (uintptr_t)ptr; /* converting ptr value to unsingned int */
 		num_digits = 0;
 		temp = ptr_value;
@@ -45,7 +45,7 @@ void print_pointer(va_list arg)
 /* printing content of hex array */
 		for (i = 0; i < num_digits; i++)
 		{
-			_putchar(hex_representation[i]);
+			buffer_append_char(&buffer, hex_representation[i]);
 		}
 	}
 }

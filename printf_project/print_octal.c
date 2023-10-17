@@ -16,7 +16,7 @@ void print_octal(va_list arg)
 /* special case for num = 0 */
 	if (num == 0)
 	{
-		_putchar('0');
+		buffer_append_char(&buffer, '0');
 	return;
 	}
 /* doing number base division and passing remainder to octal array */
@@ -28,6 +28,6 @@ void print_octal(va_list arg)
 /* printing out octal digits */
 	for (i = count - 1; i >= 0; i--)
 	{
-		_putchar('0' + octal_digits[i]);
+		buffer_append_char(&buffer, '0' + octal_digits[i]);
 	}
 }

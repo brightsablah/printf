@@ -16,7 +16,7 @@ void print_string(va_list arg)
 	{
 		while (*null_str)
 		{
-			_putchar(*null_str);
+			buffer_append_char(&buffer, *null_str);
 			null_str++;
 		}
 	}
@@ -24,7 +24,7 @@ void print_string(va_list arg)
 	{
 		while (*str)
 		{
-			_putchar(*str);
+			buffer_append_char(&buffer, *str);
 			str++;
 		}
 	}
