@@ -41,7 +41,7 @@ void buffer_flush(Buffer *buffer);
 struct fmt
 {
 	char format;
-	void (*print_function)(va_list, Buffer);
+	void (*print_function)(va_list, Buffer *);
 };
 typedef struct fmt fmt_spec;
 
@@ -65,7 +65,7 @@ void print_ASCII_string(va_list arg, Buffer *buffer);
 /* Support Functions */
 void write_buffer(void);
 int _putchar(char c);
-int _print_number(int num);
+int _print_number(int num, Buffer *buffer);
 char *rot13(char *str);
 char *_strdup(char *str);
 
