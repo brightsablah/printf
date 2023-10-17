@@ -11,11 +11,20 @@
 #include <stdint.h>
 #include <limits.h>
 
-
-typedef struct {
+/**
+ * struct Buffer - A structure for managing the output buffer
+ * @data: The character array to store the buffer data
+ * @size: The current size of the buffer
+ *
+ * Description:
+ * This structure is used to manage the output buffer for _printf.
+ */
+struct buff
+{
 	char data[BUFFER_SIZE];
 	size_t size;
-} Buffer;
+}; 
+typedef struct buff Buffer;
 
 void buffer_init(Buffer *buffer);
 void buffer_append_char(Buffer *buffer, char c);
