@@ -1,3 +1,4 @@
+#include "main.h"
 /**
 * print_percent - Prints a percent sign
 * @arg: A va_list (unused)
