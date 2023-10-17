@@ -13,16 +13,16 @@
 
 /**
  * struct Buffer - A structure for managing the output buffer
- * @data: The character array to store the buffer data
- * @size: The current size of the buffer
+ * @output_buffer: The character array to store the buffer data
+ * @buffer_index: The current size of the buffer
  *
  * Description:
  * This structure is used to manage the output buffer for _printf.
  */
 struct buff
 {
-	char data[BUFFER_SIZE];
-	size_t size;
+	char output_buffer[BUFFER_SIZE];
+	size_t buffer_index;
 }; 
 typedef struct buff Buffer;
 
