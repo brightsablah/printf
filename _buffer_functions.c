@@ -14,6 +14,7 @@ void buffer_init(Buffer *buffer)
 	{
 		buffer->buffer_index = 0;
 		buffer->output_buffer[0] = '\0';
+		buffer->char_count = 0;
 	}
 }
 
@@ -33,11 +34,13 @@ void buffer_append_char(Buffer *buffer, char c)
 		if (buffer->buffer_index < BUFFER_SIZE)
 		{
 			buffer->output_buffer[buffer->buffer_index++] = c;
+			buffer->char_count++;
 		}
 	else
 		{
 			buffer_flush(buffer);
 			buffer->output_buffer[buffer->buffer_index++] = c;
+			buffer->char_count++;
 		}
 	}
 }
@@ -55,7 +58,6 @@ void buffer_flush(Buffer *buffer)
 	if (buffer != NULL && buffer->buffer_index > 0)
 	{
 		write(STDOUT_FILENO, buffer->output_buffer, buffer->buffer_index);
-		buffer_init(buffer);
 	}
 }
 
