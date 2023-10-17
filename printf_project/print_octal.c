@@ -6,7 +6,7 @@
 * Description:
 * This function prints an octal number to the standard output.
 */
-void print_octal(va_list arg)
+void print_octal(va_list arg, Buffer *buffer)
 {
 	unsigned int num = va_arg(arg, unsigned int);
 	int octal_digits[12]; /* Assuming a max of 12 octal digits enough for 32bit*/
@@ -16,7 +16,7 @@ void print_octal(va_list arg)
 /* special case for num = 0 */
 	if (num == 0)
 	{
-		_putchar('0');
+		buffer_append_char(buffer, '0');
 	return;
 	}
 /* doing number base division and passing remainder to octal array */
@@ -28,6 +28,6 @@ void print_octal(va_list arg)
 /* printing out octal digits */
 	for (i = count - 1; i >= 0; i--)
 	{
-		_putchar('0' + octal_digits[i]);
+		buffer_append_char(buffer, '0' + octal_digits[i]);
 	}
 }

@@ -7,7 +7,7 @@
 * This function prints an integer in hexadecimal (uppercase)
 * format to the standard output.
 */
-void print_hex_upper(va_list arg)
+void print_hex_upper(va_list arg, Buffer *buffer)
 {
 	unsigned int num = va_arg(arg, unsigned int);
 	char hex_digits[16] = "0123456789ABCDEF"; /*Upper Hexadecimal digits */
@@ -17,7 +17,7 @@ void print_hex_upper(va_list arg)
 /* special case for num = 0 */
 	if (num == 0)
 	{
-		_putchar('0');
+		buffer_append_char(buffer, '0');
 		return;
 	}
 /* doing number base division and adding remainders to hex array */
@@ -29,6 +29,6 @@ void print_hex_upper(va_list arg)
 /* printing out the elements of the hex array */
 	for (i = count - 1; i >= 0; i--)
 	{
-		_putchar(hex_representation[i]);
+		buffer_append_char(buffer, hex_representation[i]);
 	}
 }

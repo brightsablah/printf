@@ -20,13 +20,13 @@ int _print_number(int num)
 	{
 		while (int_min[count] != '\0')
 		{
-			_putchar(int_min[count]);
+			buffer_append_char(buffer, int_min[count]);
 			count++;
 		}
 	}
 	else if (num < 0) /* handle negatives */
 	{
-		_putchar('-');
+		buffer_append_char(buffer, '-');
 		count++;
 		num = -num;
 	}
@@ -36,7 +36,7 @@ int _print_number(int num)
 		if (num / 10)
 		count += _print_number(num / 10);
 
-		_putchar('0' + num % 10);
+		buffer_append_char(buffer, '0' + num % 10);
 		count++;
 	}
 

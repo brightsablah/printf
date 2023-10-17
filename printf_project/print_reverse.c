@@ -6,7 +6,7 @@
 * Description:
 * This function prints a string in reverse order to the standard output.
 */
-void print_reverse(va_list arg)
+void print_reverse(va_list arg, Buffer *buffer)
 {
 	char *str = va_arg(arg, char *);
 	int length = 0, i;
@@ -23,6 +23,6 @@ void print_reverse(va_list arg)
 /* print characters in reverse */
 	for (i = length - 1; i >= 0; i--)
 	{
-		_putchar(str[i]);
+		buffer_append_char(buffer, str[i]);
 	}
 }

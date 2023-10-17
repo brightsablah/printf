@@ -12,22 +12,22 @@
 #include <limits.h>
 
 /**
- * struct Buffer - A structure for managing the output buffer
- * @data: The character array to store the buffer data
- * @size: The current size of the buffer
+ * struct buff - A structure for managing the output buffer
+ * @output_buffer: The character array to store the buffer data
+ * @buffer_index: The current size of the buffer
  *
  * Description:
  * This structure is used to manage the output buffer for _printf.
  */
 struct buff
 {
-	char data[BUFFER_SIZE];
-	size_t size;
-}; 
+	char output_buffer[BUFFER_SIZE];
+	size_t buffer_index;
+};
 typedef struct buff Buffer;
 
 void buffer_init(Buffer *buffer);
-void buffer_append_char(Buffer *buffer, char c);
+void buffer_append_char(Buffer *, char);
 void buffer_flush(Buffer *buffer);
 
 /**
@@ -41,26 +41,26 @@ void buffer_flush(Buffer *buffer);
 struct fmt
 {
 	char format;
-	void (*print_function)(va_list);
+	void (*print_function)(va_list, Buffer);
 };
 typedef struct fmt fmt_spec;
 
 
 /* Print Function prototypes */
 int _printf(const char *format, ...);
-void print_char(va_list arg);
-void print_string(va_list arg);
-void print_int(va_list arg);
-void print_unsigned(va_list arg);
-void print_octal(va_list arg);
-void print_hex(va_list arg);
-void print_hex_upper(va_list arg);
-void print_pointer(va_list arg);
-void print_percent(va_list arg);
-void print_binary(va_list arg);
-void print_reverse(va_list arg);
-void print_rot13(va_list arg);
-void print_ASCII_string(va_list arg);
+void print_char(va_list arg, Buffer *buffer);
+void print_string(va_list arg, Buffer *buffer);
+void print_int(va_list arg, Buffer *buffer);
+void print_unsigned(va_list arg, Buffer *buffer);
+void print_octal(va_list arg, Buffer *buffer);
+void print_hex(va_list arg, Buffer *buffer);
+void print_hex_upper(va_list arg, Buffer *buffer);
+void print_pointer(va_list arg, Buffer *buffer);
+void print_percent(va_list arg, Buffer *buffer);
+void print_binary(va_list arg, Buffer *buffer);
+void print_reverse(va_list arg, Buffer *buffer);
+void print_rot13(va_list arg, Buffer *buffer);
+void print_ASCII_string(va_list arg, Buffer *buffer);
 
 /* Support Functions */
 void write_buffer(void);

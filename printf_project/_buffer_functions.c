@@ -8,11 +8,14 @@
  * This function initializes the buffer by setting its size to 0 and
  * null-terminating the data.
  */
-void buffer_init(Buffer *buffer) {
-    buffer->size = 0;
-    buffer->data[0] = '\0';
+void buffer_init(Buffer *buffer)
+{
+    if (buffer != NULL)
+    {
+        buffer->buffer_index = 0;
+        buffer->output_buffer[0] = '\0';
+    }
 }
-
 
 /**
  * buffer_append_char - Append a character to the buffer
@@ -24,16 +27,13 @@ void buffer_init(Buffer *buffer) {
  * it is flushed to the standard output.
  */
 void buffer_append_char(Buffer *buffer, char c) {
-    if (buffer->size < BUFFER_SIZE - 1) {
-        buffer->data[buffer->size] = c;
-        buffer->size++;
-        buffer->data[buffer->size] = '\0'; // Null-terminate the string
-    } else {
-        // Buffer is full, flush it and reset
-        write(STDOUT_FILENO, buffer->data, buffer->size);
-        buffer->size = 0;
-        buffer->data[0] = '\0';
-        buffer_append_char(buffer, c);
+    if (buffer != NULL) {
+        if (buffer->buffer_index < BUFFER_SIZE) {
+            buffer->output_buffer[buffer->buffer_index++] = c;
+        } else {
+            buffer_flush(buffer);
+            buffer->output_buffer[buffer->buffer_index++] = c;
+        }
     }
 }
 
@@ -46,8 +46,9 @@ void buffer_append_char(Buffer *buffer, char c) {
  * buffer's size and data.
  */
 void buffer_flush(Buffer *buffer) {
-    write(STDOUT_FILENO, buffer->data, buffer->size);
-    buffer->size = 0;
-    buffer->data[buffer->size] = '\0';
+    if (buffer != NULL && buffer->buffer_index > 0) {
+        write(STDOUT_FILENO, buffer->output_buffer, buffer->buffer_index);
+        buffer_init(buffer);
+    }
 }
 
