@@ -2,6 +2,7 @@
 /**
 * print_pointer - Prints a pointer address
 * @arg: A va_list containing the pointer to print
+* @buffer: pointer a buffer that stores print output
 *
 * Description:
 * This function prints a pointer address in hexadecimal format
