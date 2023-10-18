@@ -24,8 +24,12 @@ void print_ASCII_string(va_list arg, Buffer *buffer)
 			/* Print non-printable characters as \x followed by the ASCII code value */
 			buffer_append_char(buffer, '\\');
 			buffer_append_char(buffer, 'x');
-			buffer_append_char(buffer, (*str / 16 < 10) ? ('0' + (*str / 16)) : ('A' + (*str / 16 - 10)));
-			buffer_append_char(buffer, (*str % 16 < 10) ? ('0' + (*str % 16)) : ('A' + (*str % 16 - 10)));
+			buffer_append_char(buffer, (*str / 16 < 10) ?
+					   ('0' + (*str / 16)) :
+					   ('A' + (*str / 16 - 10)));
+			buffer_append_char(buffer, (*str % 16 < 10) ?
+					   ('0' + (*str % 16)) :
+					   ('A' + (*str % 16 - 10)));
 		}
 		else
 		{
