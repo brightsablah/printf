@@ -2,6 +2,7 @@
 /**
 * print_rot13 - Prints a string encoded in ROT13
 * @arg: A va_list containing the string to print
+* @buffer: pointer a buffer that stores print output
 *
 * Description:
 * This function prints a string encoded in ROT13 to the standard output.
