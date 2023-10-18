@@ -2,6 +2,7 @@
 /**
 * print_unsigned - Prints an unsigned integer
 * @arg: A va_list containing the unsigned integer to print
+* @buffer: pointer a buffer that stores print output
 *
 * Description:
 * This function prints an unsigned integer to the standard output.
@@ -12,7 +13,7 @@ void print_unsigned(va_list arg, Buffer *buffer)
 	unsigned int temp;
 	int num_digits;
 	int i;
-	char decimal_representation[16];/* Maximum 16 chars for an unsigned int */
+	char decimal_representation[16];/* Maximum 16 chars for unsigned int */
 
 /* special case for unsigned number = 0 */
 	if (num == 0)
