@@ -2,6 +2,7 @@
 /**
  * print_char - Prints a character
  * @arg: A va_list containing the character to print
+ * @buffer: pointer a buffer that stores print output
  *
  * Description:
  * This function prints a character to the standard output.

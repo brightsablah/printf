@@ -2,6 +2,7 @@
 /**
 * print_binary - Prints an integer in binary format
 * @arg: A va_list containing the integer to print in binary
+* @buffer: pointer a buffer that stores print output
 *
 * Description:
 * This function prints an integer in binary format to the standard output.
