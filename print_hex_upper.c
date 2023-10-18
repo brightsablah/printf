@@ -2,6 +2,7 @@
 /**
 * print_hex_upper - Prints an integer in hexadecimal (uppercase)
 * @arg: A va_list containing the integer to print
+* @buffer: pointer a buffer that stores print output
 *
 * Description:
 * This function prints an integer in hexadecimal (uppercase)
