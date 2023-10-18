@@ -21,11 +21,14 @@ void print_ASCII_string(va_list arg)
 	{
 		if (*str < 32 || *str >= 127)
 		{
-			/* Print non-printable characters as \x followed by the ASCII code value */
+			/* Print non-printable characters as \x followed by the
+ ASCII code value */
 			_putchar('\\');
 			_putchar('x');
-			_putchar((*str / 16 < 10) ? ('0' + (*str / 16)) : ('A' + (*str / 16 - 10)));
-			_putchar((*str % 16 < 10) ? ('0' + (*str % 16)) : ('A' + (*str % 16 - 10)));
+			_putchar((*str / 16 < 10) ? ('0' + (*str / 16)) :
+				 ('A' + (*str / 16 - 10)));
+			_putchar((*str % 16 < 10) ? ('0' + (*str % 16)) :
+				 ('A' + (*str % 16 - 10)));
 		}
 		else
 		{
