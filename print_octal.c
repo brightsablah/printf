@@ -2,6 +2,7 @@
 /**
 * print_octal - Prints an octal number
 * @arg: A va_list containing the octal number to print
+* @buffer: pointer a buffer that stores print output
 *
 * Description:
 * This function prints an octal number to the standard output.
