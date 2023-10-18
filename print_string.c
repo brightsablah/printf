@@ -2,6 +2,7 @@
 /**
  * print_string - Prints a string
  * @arg: A va_list containing the string to print
+ * @buffer: pointer a buffer that stores print output
  *
  * Description:
  * This function prints a string to the standard output.
