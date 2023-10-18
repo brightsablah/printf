@@ -2,6 +2,7 @@
 /**
 * _print_number - Prints an integer
 * @num: The integer to print
+* @buffer: pointer a buffer that stores print output
 *
 * Description:
 * This function prints an integer to the standard output.
