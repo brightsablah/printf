@@ -29,4 +29,6 @@ void print_rot13(va_list arg, Buffer *buffer)
 	{
 		buffer_append_char(buffer, rot13_str[i]);
 	}
+
+	free(rot13_str);
 }
