@@ -51,7 +51,7 @@ int _printf(const char *format, ...)
 			if (format[i + 1] == '\0')
 			{
 				buffer_append_char(&buffer, '%');
-				i++;
+				return (-1);
 			}
 
 			specifier_found = 0;
