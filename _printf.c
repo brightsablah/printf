@@ -48,6 +48,12 @@ int _printf(const char *format, ...)
 			if (format[i + 1] == ' ' && format[i + 2] == '\0')
 				i++;
 
+			if (format[i + 1] == '\0')
+			{
+				buffer_append_char(&buffer, '%');
+				i++;
+			}
+
 			specifier_found = 0;
 			for (j = 0; j < sizeof(specifiers) / sizeof(specifiers[0]); j++)
 			{
