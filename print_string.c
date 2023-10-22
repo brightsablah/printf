@@ -8,13 +8,21 @@
  * This function prints a string to the standard output.
  * If the string is NULL, it prints "(null)" instead.
  */
-void print_string(va_list arg, Buffer *buffer)
+void print_string(va_list arg, Buffer *buffer, format_options *options)
 {
 	char *str = va_arg(arg, char *);
 	char *null_str = "(null)";
+	int len, spaces, zeroes, i;
 
 	if (str == NULL)
 	{
+		len = strlen(null_str);
+		spaces = options->width - len;
+		while (spaces > 0)
+		{
+			buffer_append_char(buffer, ' ');
+			spaces--;
+		}
 		while (*null_str)
 		{
 			buffer_append_char(buffer, *null_str);
@@ -23,6 +31,37 @@ void print_string(va_list arg, Buffer *buffer)
 	}
 	else
 	{
+		len = strlen(str);
+		spaces = options->width - len;
+		while (spaces > 0)
+		{
+			buffer_append_char(buffer, ' ');
+			spaces--;
+		}
+
+		if (options->precision > 0)
+		{
+			if (options->precision > len)
+			{
+				while (*str)
+				{
+					buffer_append_char(buffer, *str);
+					str++;
+				}
+			}
+			else
+			{
+				for (i = 0; i < options->precision; i++)
+				{
+					if (str[i] != '\0')
+					{
+						buffer_append_char(buffer, str[i]);
+					}
+				}
+			}
+		return;
+
+		}
 		while (*str)
 		{
 			buffer_append_char(buffer, *str);

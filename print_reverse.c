@@ -7,7 +7,7 @@
 * Description:
 * This function prints a string in reverse order to the standard output.
 */
-void print_reverse(va_list arg, Buffer *buffer)
+void print_reverse(va_list arg, Buffer *buffer, format_options *options)
 {
 	char *str = va_arg(arg, char *);
 	int length = 0, i;

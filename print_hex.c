@@ -8,16 +8,37 @@
 * This function prints an integer in hexadecimal (lowercase)
 * format to the standard output.
 */
-void print_hex(va_list arg, Buffer *buffer)
+void print_hex(va_list arg, Buffer *buffer, format_options *options)
 {
 	unsigned int num = va_arg(arg, unsigned int);
 	char hex_digits[16] = "0123456789abcdef"; /* Hexadecimal digits */
 	char hex_representation[8]; /* Assuming 8 characters for a 32-bit integer */
-	int count = 0, i;
+	int count = 0, i, len, spaces, zeroes;
 
 /* special case for num = 0 */
 	if (num == 0)
 	{
+		len = 1;
+		spaces = options->width - len;
+		while (spaces > 0)
+		{
+			buffer_append_char(buffer, ' ');
+			spaces--;
+		}
+		if (options->precision > len)
+		{
+			zeroes = options->precision - len;
+			while (zeroes > 0)
+			{
+				buffer_append_char(buffer, '0');
+				zeroes--;
+			}
+		}
+		else if (options->precision == 0)
+		{
+			return;
+		}
+
 		buffer_append_char(buffer, '0');
 		return;
 	}
@@ -27,6 +48,28 @@ void print_hex(va_list arg, Buffer *buffer)
 		hex_representation[count++] = hex_digits[num % 16];
 		num /= 16;
 	}
+
+		len = count;
+		spaces = options->width - len;
+		while (spaces > 0)
+		{
+			buffer_append_char(buffer, ' ');
+			spaces--;
+		}
+		if (options->precision > len)
+		{
+			zeroes = options->precision - len;
+			while (zeroes > 0)
+			{
+				buffer_append_char(buffer, '0');
+				zeroes--;
+			}
+		}
+		else if (options->precision == 0)
+		{
+			return;
+		}
+
 /* printing out the elements of the hex array */
 	for (i = count - 1; i >= 0; i--)
 	{

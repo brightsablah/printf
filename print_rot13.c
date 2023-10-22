@@ -7,7 +7,7 @@
 * Description:
 * This function prints a string encoded in ROT13 to the standard output.
 */
-void print_rot13(va_list arg, Buffer *buffer)
+void print_rot13(va_list arg, Buffer *buffer, format_options *options)
 {
 	char *str = va_arg(arg, char *);
 	char *rot13_str;
