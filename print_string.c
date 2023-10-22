@@ -60,7 +60,7 @@ void print_string(va_list arg, Buffer *buffer, format_options *options)
 						buffer_append_char(buffer, str[i]);
 					}
 				}
-				buffer_append_char('\0');
+				buffer_append_char(buffer, '\0');
 			}
 		return;
 
