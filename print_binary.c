@@ -13,6 +13,8 @@ void print_binary(va_list arg, Buffer *buffer, format_options *options)
 	int leading_zeros = 1; /* Flag to skip leading zeros */
 	int i, bit;
 
+	(void)(options);
+
 /* special case for num = 0 */
 	if (num == 0)
 	{

@@ -12,6 +12,7 @@ void print_reverse(va_list arg, Buffer *buffer, format_options *options)
 	char *str = va_arg(arg, char *);
 	int length = 0, i;
 
+	(void)(options);
 /* special case for NULL string */
 	if (str == NULL)
 		return;

@@ -10,6 +10,8 @@
 #include <unistd.h>
 #include <stdint.h>
 #include <limits.h>
+#include <ctype.h>
+#include <string.h>
 
 /**
 * struct format - A structure managing format options

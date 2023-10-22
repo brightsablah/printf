@@ -17,6 +17,9 @@ void print_pointer(va_list arg, Buffer *buffer, format_options *options)
 	uintptr_t ptr_value;
 	char *null_ptr = "(nil)";
 	char *hex_digits = "0123456789abcdef";
+
+	(void)(options);
+
 /* special case for when ptr is NULL */
 	if (ptr == NULL)
 	{

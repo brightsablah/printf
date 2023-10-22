@@ -4,7 +4,7 @@ int number_length(int num)
 {
 	int length = 0;
 
-	if (number == 0)
+	if (num == 0)
 	{
 		return (1);
 	}

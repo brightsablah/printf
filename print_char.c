@@ -15,7 +15,7 @@ void print_char(va_list arg, Buffer *buffer, format_options *options)
 
 	while (spaces > 0)
 	{
-		buffer_append_char(' ');
+		buffer_append_char(buffer, ' ');
 		spaces--;
 	}
 

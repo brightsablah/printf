@@ -13,6 +13,8 @@ void print_ASCII_string(va_list arg, Buffer *buffer, format_options *options)
 {
 	char *str = va_arg(arg, char *);
 
+	(void)(options);
+
 /* special case for NULL string */
 	if (str == NULL)
 		return;

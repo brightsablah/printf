@@ -10,6 +10,8 @@
 void print_percent(va_list arg, Buffer *buffer, format_options *options)
 {
 	(void)arg; /* Unused parameter */
+	(void)(options);
+
 
 	buffer_append_char(buffer, '%');
 }

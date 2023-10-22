@@ -12,7 +12,9 @@ void print_string(va_list arg, Buffer *buffer, format_options *options)
 {
 	char *str = va_arg(arg, char *);
 	char *null_str = "(null)";
-	int len, spaces, zeroes, i;
+	int len, spaces, i;
+
+	(void)(options);
 
 	if (str == NULL)
 	{

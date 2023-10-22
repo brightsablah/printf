@@ -13,6 +13,8 @@ void print_rot13(va_list arg, Buffer *buffer, format_options *options)
 	char *rot13_str;
 	int i;
 
+	(void)(options);
+
 /* special case for NULL string */
 	if (str == NULL)
 		return;
