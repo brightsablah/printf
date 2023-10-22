@@ -15,6 +15,7 @@ int _printf(const char *format, ...)
 {
 	unsigned int i = 0, j = 0;
 	int specifier_found;
+	format_options options;
 	va_list arg_list;
 	fmt_spec specifiers[] = {
 		{'%', print_percent},
@@ -54,22 +55,24 @@ int _printf(const char *format, ...)
 				return (-1);
 			}
 
+			parse_format_options(arg_list, format, &i, &options);
+
 			specifier_found = 0;
 			for (j = 0; j < sizeof(specifiers) / sizeof(specifiers[0]); j++)
 			{
-				if (format[i + 1] == specifiers[j].format)
+				if (format[i] == specifiers[j].format)
 				{
 					if (specifiers[j].print_function != NULL)
 					{
-						specifiers[j].print_function(arg_list, &buffer); /*call print function*/
+						specifiers[j].print_function(arg_list, &buffer, &options); /*call print function*/
 					}
 					else
 					{
 						buffer_append_char(&buffer, '%');
-						buffer_append_char(&buffer, format[i + 1]); /* print specifier */
+						buffer_append_char(&buffer, format[i]); /* print specifier */
 					}
 					specifier_found = 1; /* character after % handled */
-					i++; /* skip specifier character */
+					/*i++;  skip specifier character */
 					break;
 				}
 			}
