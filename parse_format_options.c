@@ -25,6 +25,7 @@ format_options *options)
 
 	if (format[*index] == '.')
 	{
+		options->precision = 0;
 		(*index)++;
 		if (format[*index] == '*')
 			{
@@ -33,7 +34,6 @@ format_options *options)
 			}
 		if (isdigit(format[*index]))
 		{
-			options->precision = 0;
 			options->precision = strtol(format + *index, NULL, 10);
 			while (isdigit(format[*index]))
 			{
