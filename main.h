@@ -12,10 +12,27 @@
 #include <limits.h>
 
 /**
+* struct format - A structure managing format options
+* @width: output width
+* @precision: output precision
+*
+*/
+struct format
+{
+	int width;
+	int precision;
+};
+typedef struct format format_options;
+
+void parse_format_options(va_list, const char *, unsigned int *,
+format_options *);
+
+/**
  * struct buff - A structure for managing the output buffer
  * @output_buffer: The character array to store the buffer data
  * @buffer_index: The current size of the buffer
- *
+ * @char_count: number of characters added to buffer
+ * @temp_buffer: temporal buffer to manage output
  * Description:
  * This structure is used to manage the output buffer for _printf.
  */
@@ -24,6 +41,7 @@ struct buff
 	char output_buffer[BUFFER_SIZE];
 	size_t buffer_index;
 	int char_count;
+	char *temp_buffer;
 };
 typedef struct buff Buffer;
 
@@ -42,26 +60,26 @@ void buffer_flush(Buffer *buffer);
 struct fmt
 {
 	char format;
-	void (*print_function)(va_list, Buffer *);
+	void (*print_function)(va_list, Buffer *, format_options *options);
 };
 typedef struct fmt fmt_spec;
 
 
 /* Print Function prototypes */
 int _printf(const char *format, ...);
-void print_char(va_list arg, Buffer *buffer);
-void print_string(va_list arg, Buffer *buffer);
-void print_int(va_list arg, Buffer *buffer);
-void print_unsigned(va_list arg, Buffer *buffer);
-void print_octal(va_list arg, Buffer *buffer);
-void print_hex(va_list arg, Buffer *buffer);
-void print_hex_upper(va_list arg, Buffer *buffer);
-void print_pointer(va_list arg, Buffer *buffer);
-void print_percent(va_list arg, Buffer *buffer);
-void print_binary(va_list arg, Buffer *buffer);
-void print_reverse(va_list arg, Buffer *buffer);
-void print_rot13(va_list arg, Buffer *buffer);
-void print_ASCII_string(va_list arg, Buffer *buffer);
+void print_char(va_list arg, Buffer *buffer, format_options *options);
+void print_string(va_list arg, Buffer *buffer, format_options *options);
+void print_int(va_list arg, Buffer *buffer, format_options *options);
+void print_unsigned(va_list arg, Buffer *buffer, format_options *options);
+void print_octal(va_list arg, Buffer *buffer, format_options *options);
+void print_hex(va_list arg, Buffer *buffer, format_options *options);
+void print_hex_upper(va_list arg, Buffer *buffer, format_options *options);
+void print_pointer(va_list arg, Buffer *buffer, format_options *options);
+void print_percent(va_list arg, Buffer *buffer, format_options *options);
+void print_binary(va_list arg, Buffer *buffer, format_options *options);
+void print_reverse(va_list arg, Buffer *buffer, format_options *options);
+void print_rot13(va_list arg, Buffer *buffer, format_options *options);
+void print_ASCII_string(va_list arg, Buffer *buffer, format_options *options);
 
 /* Support Functions */
 void write_buffer(void);
@@ -69,5 +87,6 @@ int _putchar(char c);
 int _print_number(int num, Buffer *buffer);
 char *rot13(char *str);
 char *_strdup(char *str);
+int number_length(int num);
 
 #endif
